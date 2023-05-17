@@ -1,10 +1,11 @@
 ---
 all:
   hosts:
-    localhost:
-      ansible_connection: local
+    34.125.226.205:
+      ansible_user: long22264
+      ansible_password: "{{ password_vaulted }}"
+      ansible_become: true
       ansible_python_interpreter: /home/long22264/SetupServer/venv/bin/python
       ansible_become_user: root
-      # ansible_become_password: "{{ root_pass }}" # add --ask-become-pass to show enter password
+      ansible_become_password: "{{ password_vaulted }}"
       hostname: vtn-012
-    
