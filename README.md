@@ -4,16 +4,24 @@
 
 - Install virtualenv
   ```
-  sudo apt install python3-virtualenv
+  VPS : sudo apt install python3-venv
+  Local: sudo apt install python3-virtualenv
   ```
 
 - Activate virtualenv
   ```
+  VPS: python3 -m venv venv
+  ---
   virtualenv venv && source venv/bin/activate
   ```
 
 - Install ansible inside virtualenv
   ```
+  VPS:
+    pip install --upgrade pip
+    pip install cryptography 
+    pip install ansible
+  ---
   pip install ansible
   ```
 
