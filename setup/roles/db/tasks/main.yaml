@@ -14,5 +14,5 @@
     state: started
     interactive: true
     tty: true
-    networks:
-      - name: vdt2023
+    # networks:
+    #   - name: vdt2023
