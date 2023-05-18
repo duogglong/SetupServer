@@ -1,11 +1,11 @@
 ---
 all:
   hosts:
-    34.125.226.205:
-      ansible_user: long22264
+    "{{ ip_ubuntu02 }}":
+      ansible_user: long22263
       ansible_password: "{{ password_vaulted }}"
       ansible_become: true
-      ansible_python_interpreter: /home/long22264/SetupServer/venv/bin/python
+      ansible_python_interpreter: "{{ python_path_ubuntu02 }}"
       ansible_become_user: root
       ansible_become_password: "{{ password_vaulted }}"
       hostname: vtn-012

@@ -58,6 +58,11 @@
       - wget
       - htop
 
+- name: Create sshd_config.d directory
+  file:
+    path: /etc/ssh/sshd_config.d
+    state: directory
+
 - name: SSH hardening
   copy:
     src: ../templates/ssh_hardening.conf

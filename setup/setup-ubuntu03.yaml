@@ -5,7 +5,7 @@
   gather_facts: true
   roles:
     - common
-    - db
-    # - lb
-    # - api
+    # - db
+    - api
+    - lb
     # - web

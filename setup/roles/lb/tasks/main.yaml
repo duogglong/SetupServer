@@ -3,27 +3,28 @@
     source: pull
     name: "{{ nginx_image }}"
 
-- name: Copy website files to the server's document root
-  copy:
-    src: "{{ app_root }}"
-    dest: "{{ document_root }}"
-    mode: preserve
+- name: Run Nginx container
+  docker_container:
+    name: "{{ nginx_container_name }}"
+    image: "{{ nginx_image }}"
+    ports:
+      - "80:80"
 
-- name: Apply Nginx template
-  template:
-    src: files/nginx.conf.j2
-    dest: /etc/nginx/sites-available/default
-  notify: Restart Nginx
+- name: Copy default.conf to container
+  community.docker.docker_container_copy_into:
+    container: "{{ nginx_container_name }}"
+    path: ../templates/default.conf
+    container_path: /etc/nginx/conf.d/
+  notify: "Reload Nginx config"
 
-- name: Enable new site
-  file:
-    src: /etc/nginx/sites-available/default
-    dest: /etc/nginx/sites-enabled/default
-    state: link
-  notify: Restart Nginx
+# - name: Copy default.conf to container
+#   docker_copy:
+#     src: ../templates/default.conf
+#     dest: nginx-vdt2023:/etc/nginx/conf.d/default.conf
+#   notify: "Reload Nginx config"
 
-- name: Allow all access to tcp port 80
-  ufw:
-    rule: allow
-    port: '80'
-    proto: tcp
+# - name: Allow all access to tcp port 80
+#   ufw:
+#     rule: allow
+#     port: '80'
+#     proto: tcp
