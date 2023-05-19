@@ -7,5 +7,5 @@
     - common
     # - db
     - api
-    # - lb
+    - lb
     # - web

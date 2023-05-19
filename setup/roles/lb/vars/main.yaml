@@ -1,4 +1,1 @@
-document_root: /var/www/html
-app_root: html_demo_site-main
-
 nginx_image: nginx:latest
