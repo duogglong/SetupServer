@@ -21,6 +21,8 @@
     pip install --upgrade pip
     pip install cryptography 
     pip install ansible
+    pip install requests
+    pip show requests
   ---
   pip install ansible
   ```
@@ -42,7 +44,10 @@
 To execute each playbook, cd to the corresponding directory and run this command (with flag --ask-become-pass you must be enter your root password):
 
 ```
+- Ask become password
 ansible-playbook -i inventory.yaml --ask-become-pass setup.yaml
+- Ask vault password
+ansible-playbook -i inventory.yaml setup.yaml --ask-vault-pass
 ```
 
 <b>1,</b> You can configure this file (./setup/setup.yaml) to specify which roles should be run:
@@ -74,3 +79,23 @@ ansible-playbook -i inventory.yaml --ask-become-pass setup.yaml
 <b>2,</b> App:
 
 <img src= images/list_sv.png>
+
+### IV, Note
+<b>1,</b> VPS config:
+<i>- Đặt password cho root, user. Sau đó sửa file /etc/ssh/sshd_config trường PasswordAuthentication thành "yes" để đăng nhập được qua user bằng password</i>
+
+<i>Dùng lệnh sau để add user vào sudoers</i>
+  ```
+  sudo visudo
+  - Thêm dòng này vào dưới dòng root    ALL=(ALL:ALL) ALL :
+  long22263    ALL=(ALL:ALL) ALL
+  ```
+
+<b>2,</b> Ansible config:
+<i>Dùng lệnh sau để vault password</i>
+  ```
+  ansible-vault encrypt_string --ask-vault-pass '123456aA@' --name 'vaulted_password'
+  ```
+
+<b>3,</b> Docker config:
+<i>Khi chạy nginx container, nếu proxy_pass thì cần đặt ip của container đích hoặc container_name (cùng network) của ip đích</i>
