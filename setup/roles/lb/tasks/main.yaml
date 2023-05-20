@@ -14,16 +14,8 @@
 
 - name: Copy file to target host
   copy:
-    src: ../templates/default-be.conf
+    src: "{{ path_default_conf }}"
     dest: /tmp/default.conf
-
-# - name: Copy file default.conf from target host to container
-#   community.docker.docker_container:
-#     name: "{{ nginx_container_name }}"
-#     copy:
-#       src: /tmp/default.conf
-#       dest: /etc/nginx/conf.d/
-#   notify: "Reload Nginx config"
 
 - name: Copy default.conf to container
   community.docker.docker_container_copy_into:
@@ -31,12 +23,6 @@
     path: /tmp/default.conf
     container_path: /etc/nginx/conf.d/default.conf
   notify: "Reload Nginx config"
-
-# - name: Copy default.conf to container
-#   docker_copy:
-#     src: ../templates/default.conf
-#     dest: nginx-vdt2023:/etc/nginx/conf.d/default.conf
-#   notify: "Reload Nginx config"
 
 # - name: Allow all access to tcp port 80
 #   ufw:

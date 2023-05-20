@@ -17,7 +17,8 @@ password_vaulted: !vault |
 ip_ubuntu01: 34.87.138.166
 ip_ubuntu02: 35.247.130.29
 ip_ubuntu03: 34.87.140.197
+ip_ubuntu04: 34.124.148.72
+ip_ubuntu05: 34.92.112.202
+ip_ubuntu06: 34.92.110.53
 
-python_path_ubuntu01: /usr/bin/python3
-python_path_ubuntu02: /usr/bin/python3
-python_path_ubuntu03: /usr/bin/python3
+python_path: /usr/bin/python3
